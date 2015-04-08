@@ -8,7 +8,7 @@ highlight CursorLine term=none cterm=none ctermfg=none ctermbg=darkgray
 set number
 
 "auto completion options
-autocmd FileType php,ctp :set dictionary=~/.vim/dict/php.dict
+"autocmd FileType php,ctp :set dictionary=~/.vim/dict/php.dict
 highlight Pmenu ctermbg=4
 highlight PmenuSel ctermbg=1
 highlight PMenuSbar ctermbg=4
@@ -43,14 +43,16 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 	  
 " My Bundles here:
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
+" NeoBundle 'Shougo/neosnippet.vim'
+" NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'scrooloose/nerdtree'
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+" Only for binary editor
+NeoBundle 'Shougo/vinarise'
 			    
 call neobundle#end()
 				 
@@ -61,4 +63,5 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-autocmd vimenter * NERDTree
+"let NERDTreeShowHidden = 1
+autocmd VimEnter * execute 'NERDTree'
