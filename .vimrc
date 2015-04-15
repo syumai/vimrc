@@ -24,12 +24,23 @@ endif
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 
+"VimShell
+NeoBundle 'Shougo/vimproc.vim', {
+			\ 'build' : {
+			\     'windows' : 'tools\\update-dll-mingw',
+			\     'cygwin' : 'make -f make_cygwin.mak',
+			\     'mac' : 'make -f make_mac.mak',
+			\     'linux' : 'make',
+			\     'unix' : 'gmake',
+			\    },
+			\ }
+NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
 "Others
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'scrooloose/nerdtree' 
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 NeoBundle 'Shougo/vinarise'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
@@ -75,8 +86,21 @@ set backspace=start,eol,indent
 "--------------------------------------------------------------------------------------
 "Key Mapping
 "--------------------------------------------------------------------------------------
+"Caw
 nmap <Leader>c <Plug>(caw:I:toggle)
 vmap <Leader>c <Plug>(caw:I:toggle)
+
+
+"--------------------------------------------------------------------------------------
+"VimShell Options
+"--------------------------------------------------------------------------------------
+"Prompt
+let g:vimshell_prompt_expr = 'getcwd()." > "'
+let g:vimshell_prompt_pattern = '^\f\+ % '
+"KeyMap
+nnoremap <silent> vs :VimShell<CR>
+nnoremap <silent> vsc :VimShellCreate<CR>
+nnoremap <silent> vp :VimShellPop<CR>
 
 
 "--------------------------------------------------------------------------------------
