@@ -50,8 +50,8 @@ if dein#load_state('~/.vim/bundles')
   call dein#add('slim-template/vim-slim')
   call dein#add('posva/vim-vue')
   call dein#add('othree/yajs.vim')           " ES2015
-  call dein#add('othree/es.next.syntax.vim') " EXMAScript future sintax
-  call dein#add('cakebaker/scss-syntax.vim') " SCSS
+  call dein#add('othree/es.next.syntax.vim') " ECMAScript future sintax
+  call dein#add('tpope/vim-haml')            " Haml, Sass and SCSS
   call dein#add('hail2u/vim-css3-syntax')    " CSS3
 
   call dein#end()
@@ -125,6 +125,7 @@ nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W
 nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
 
 " Use ag (The Silver Searcher) as grep command
+" brew install the_silver_searcher
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
