@@ -41,6 +41,7 @@ if dein#load_state('~/.vim/bundles')
   call dein#add('tpope/vim-repeat')      " Repeat commands made by tpope
   call dein#add('tpope/vim-rails')
   call dein#add('ntpeters/vim-better-whitespace') " Highlight trailing whitespace characters
+  call dein#add('fatih/vim-go')
 
   " Color scheme
   call dein#add('tomasr/molokai')
