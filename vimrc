@@ -83,7 +83,6 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 
-
 " Color scheme
 colorscheme molokai
 hi CursorLine ctermbg=242
@@ -109,6 +108,13 @@ map sk <C-w>k
 map sl <C-w>l
 
 command E Explore
+
+"------------------------------------------------------------------------------------------------
+" File type settings
+"------------------------------------------------------------------------------------------------
+
+au BufNewFile,BufRead *.es6 setf javascript
+au BufNewFile,BufRead Schemafile setf ruby
 
 "------------------------------------------------------------------------------------------------
 " Unite.vim
