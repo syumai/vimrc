@@ -14,9 +14,19 @@ brew install vim --with-lua
 git clone https://github.com/syumai/vimrc.git ~/.vim
 ```
 
-### Install [dein.vim](https://github.com/Shougo/dein.vim) (package manager)
+### Install plugins
+
+#### Install vim-plug
 
 ```console
-cd ~/.vim
-make install
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+#### Install plugins
+
+```console
+vim
+
+:PlugInstall
 ```

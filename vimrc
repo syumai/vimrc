@@ -1,67 +1,50 @@
 "------------------------------------------------------------------------------------------------
-" dein.vim
+" vim-plug
 " Plugin manager for Vim
 "------------------------------------------------------------------------------------------------
 
-if &compatible
-  set nocompatible
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
+call plug#begin('~/.vim/plugged')
 
-if dein#load_state('~/.vim/bundles')
-  call dein#begin('~/.vim/bundles')
+" Auto complete
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
 
-  call dein#add('~/.vim/bundles/repos/github.com/Shougo/dein.vim')
+" Plugins
+Plug 'tpope/vim-fugitive'    " Git
+Plug 'scrooloose/nerdtree'   " Filer
+Plug 'tyru/caw.vim'          " Comment out code (\c)
+Plug 'simeji/winresizer'
+Plug 'scrooloose/syntastic'  " Check syntax
+Plug 'itchyny/lightline.vim' " Status line
+Plug 'ctrlpvim/ctrlp.vim'    " File finder
+Plug 'tpope/vim-surround'    " Surround words
+Plug 'tpope/vim-speeddating' " Increment / Decrement dates by <C-a> / <C-x>
+Plug 'tpope/vim-repeat'      " Repeat commands made by tpope
+Plug 'tpope/vim-rails'
+Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespace characters
+Plug 'fatih/vim-go'
 
-  " Shougo wares
-  call dein#add('Shougo/deoplete.nvim')
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
-  call dein#add('zchee/deoplete-go', {'build': 'make'})
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-  call dein#add('Shougo/vimshell')
-  call dein#add('Shougo/unite.vim')
+" Color scheme
+Plug 'tomasr/molokai'
 
-  " Plugins
-  call dein#add('tpope/vim-fugitive')    " Git
-  call dein#add('scrooloose/nerdtree')   " Filer
-  call dein#add('tyru/caw.vim.git')      " Comment out code (\c)
-  call dein#add('simeji/winresizer')
-  call dein#add('scrooloose/syntastic')  " Check syntax
-  call dein#add('itchyny/lightline.vim') " Status line
-  call dein#add('ctrlpvim/ctrlp.vim')    " File finder
-  call dein#add('tpope/vim-surround')    " Surround words
-  call dein#add('tpope/vim-speeddating') " Increment / Decrement dates by <C-a> / <C-x>
-  call dein#add('tpope/vim-repeat')      " Repeat commands made by tpope
-  call dein#add('tpope/vim-rails')
-  call dein#add('ntpeters/vim-better-whitespace') " Highlight trailing whitespace characters
-  call dein#add('fatih/vim-go')
+" Syntax highlight
+Plug 'vim-ruby/vim-ruby'
+Plug 'slim-template/vim-slim'
+Plug 'posva/vim-vue'
+Plug 'othree/yajs.vim'            " ES2015
+Plug 'othree/es.next.syntax.vim'  " ECMAScript future sintax
+Plug 'tpope/vim-haml'             " Haml, Sass and SCSS
+Plug 'hail2u/vim-css3-syntax'     " CSS3
+Plug 'leafgarland/typescript-vim'
 
-  " Color scheme
-  call dein#add('tomasr/molokai')
-
-  " Syntax highlight
-  call dein#add('vim-ruby/vim-ruby')
-  call dein#add('slim-template/vim-slim')
-  call dein#add('posva/vim-vue')
-  call dein#add('othree/yajs.vim')           " ES2015
-  call dein#add('othree/es.next.syntax.vim') " ECMAScript future sintax
-  call dein#add('tpope/vim-haml')            " Haml, Sass and SCSS
-  call dein#add('hail2u/vim-css3-syntax')    " CSS3
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Check not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
+call plug#end()
 
 " -----------------------------------------------------------------------------------------------
 " Editor settings
@@ -116,10 +99,10 @@ au BufNewFile,BufRead *.es6 setf javascript
 au BufNewFile,BufRead Schemafile setf ruby
 
 "------------------------------------------------------------------------------------------------
-" deoplete.nvim
+" asynccomplete.vim
 "------------------------------------------------------------------------------------------------
 
-let g:deoplete#enable_at_startup = 1
+let g:asyncomplete_enable_for_all = 0
 
 "------------------------------------------------------------------------------------------------
 " Unite.vim
@@ -158,12 +141,12 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)"
-			\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)"
-			\: "\<TAB>"
+" imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"			\ "\<Plug>(neosnippet_expand_or_jump)"
+"			\: pumvisible() ? "\<C-n>" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"			\ "\<Plug>(neosnippet_expand_or_jump)"
+"			\: "\<TAB>"
 
 " For snippet_complete marker.
 if has('conceal')
@@ -181,6 +164,16 @@ command Vp VimShellPop
 "------------------------------------------------------------------------------------------------
 
 let g:go_fmt_command = "goimports"
+
+"------------------------------------------------------------------------------------------------
+" Auto completion
+"------------------------------------------------------------------------------------------------
+
+let g:ycm_global_ycm_extra_conf = '${HOME}/.ycm_extra_conf.py'
+let g:ycm_auto_trigger = 1
+let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_autoclose_preview_window_after_insertion = 1
+set splitbelow
 
 "------------------------------------------------------------------------------------------------
 " NERDTree
