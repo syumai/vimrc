@@ -43,6 +43,10 @@ Plug 'othree/es.next.syntax.vim'  " ECMAScript future sintax
 Plug 'tpope/vim-haml'             " Haml, Sass and SCSS
 Plug 'hail2u/vim-css3-syntax'     " CSS3
 Plug 'leafgarland/typescript-vim'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql',
+    \ 'markdown', 'vue', 'lua', 'php', 'python', 'ruby', 'html', 'swift' ] }
 
 call plug#end()
 
@@ -72,6 +76,12 @@ hi Visual ctermbg=242
 
 " Show double quotes in JSON
 autocmd Filetype json setl conceallevel=0
+
+"gVim
+:set guioptions-=m
+:set guioptions-=T
+:set guioptions-=r
+:set guioptions-=L
 
 "------------------------------------------------------------------------------------------------
 " Key Map
@@ -164,6 +174,13 @@ command Vp VimShellPop
 "------------------------------------------------------------------------------------------------
 
 let g:go_fmt_command = "goimports"
+
+"------------------------------------------------------------------------------------------------
+" vim-prettier
+"------------------------------------------------------------------------------------------------
+
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 "------------------------------------------------------------------------------------------------
 " Auto completion
