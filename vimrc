@@ -30,6 +30,8 @@ Plug 'tpope/vim-repeat'      " Repeat commands made by tpope
 Plug 'tpope/vim-rails'
 Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespace characters
 Plug 'fatih/vim-go'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Color scheme
 Plug 'tomasr/molokai'
