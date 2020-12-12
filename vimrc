@@ -34,6 +34,8 @@ Plug 'tpope/vim-rails'
 Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespace characters
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'ryym/vim-viler'
 
 " Color scheme
 Plug 'tomasr/molokai'
@@ -237,6 +239,15 @@ let g:syntastic_html_checkers=['']
 "------------------------------------------------------------------------------------------------
 
 highlight ExtraWhitespace ctermbg=239
+
+"------------------------------------------------------------------------------------------------
+" Easy Align
+"------------------------------------------------------------------------------------------------
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 "------------------------------------------------------------------------------------------------
 " Light line
