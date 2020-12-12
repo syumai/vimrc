@@ -15,6 +15,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-goimports'
 
 " Plugins
 Plug 'tpope/vim-fugitive'    " Git
@@ -29,7 +32,6 @@ Plug 'tpope/vim-speeddating' " Increment / Decrement dates by <C-a> / <C-x>
 Plug 'tpope/vim-repeat'      " Repeat commands made by tpope
 Plug 'tpope/vim-rails'
 Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespace characters
-Plug 'fatih/vim-go'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -111,10 +113,18 @@ au BufNewFile,BufRead *.es6 setf javascript
 au BufNewFile,BufRead Schemafile setf ruby
 
 "------------------------------------------------------------------------------------------------
-" asynccomplete.vim
+" LSP settings
 "------------------------------------------------------------------------------------------------
-
-let g:asyncomplete_enable_for_all = 0
+"
+nmap <silent> <C-]> :LspDefinition<CR>
+nmap <silent> <f2> :LspRename<CR>
+nmap <silent> <Leader>d :LspTypeDefinition<CR>
+nmap <silent> <Leader>r :LspReferences<CR>
+nmap <silent> <Leader>i :LspImplementation<CR>
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 1
 
 "------------------------------------------------------------------------------------------------
 " Unite.vim
