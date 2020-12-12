@@ -178,33 +178,11 @@ if has('conceal')
 endif
 
 "------------------------------------------------------------------------------------------------
-" VimShell
-"------------------------------------------------------------------------------------------------
-
-command Vp VimShellPop
-
-"------------------------------------------------------------------------------------------------
-" vim-go
-"------------------------------------------------------------------------------------------------
-
-let g:go_fmt_command = "goimports"
-
-"------------------------------------------------------------------------------------------------
 " vim-prettier
 "------------------------------------------------------------------------------------------------
 
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
-"------------------------------------------------------------------------------------------------
-" Auto completion
-"------------------------------------------------------------------------------------------------
-
-let g:ycm_global_ycm_extra_conf = '${HOME}/.ycm_extra_conf.py'
-let g:ycm_auto_trigger = 1
-let g:ycm_min_num_of_chars_for_completion = 3
-let g:ycm_autoclose_preview_window_after_insertion = 1
-set splitbelow
 
 "------------------------------------------------------------------------------------------------
 " NERDTree
@@ -291,7 +269,6 @@ function! LightlineFilename()
         \ fname =~ '__Gundo\|NERD_tree' ? '' :
         \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
         \ &ft == 'unite' ? unite#get_status_string() :
-        \ &ft == 'vimshell' ? vimshell#get_status_string() :
         \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
         \ ('' != fname ? fname : '[No Name]') .
         \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
@@ -330,7 +307,6 @@ function! LightlineMode()
         \ fname =~ 'NERD_tree' ? 'NERDTree' :
         \ &ft == 'unite' ? 'Unite' :
         \ &ft == 'vimfiler' ? 'VimFiler' :
-        \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
@@ -379,5 +355,4 @@ endfunction
 
 let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
 
