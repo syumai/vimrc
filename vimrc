@@ -36,6 +36,8 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'ryym/vim-viler'
+Plug 'fatih/vim-go'
+Plug 'takac/vim-fontmanager'
 
 " Color scheme
 Plug 'tomasr/molokai'
@@ -88,6 +90,7 @@ autocmd Filetype json setl conceallevel=0
 :set guioptions-=T
 :set guioptions-=r
 :set guioptions-=L
+:set guifont=Noto\ Mono\ 12
 
 "------------------------------------------------------------------------------------------------
 " Key Map
@@ -183,6 +186,7 @@ endif
 
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+let g:prettier#config#trailing_comma = 'es5'
 
 "------------------------------------------------------------------------------------------------
 " NERDTree
